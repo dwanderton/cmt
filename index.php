@@ -23,16 +23,16 @@
     <div class="hidden-sm-down text-uppercase">
       <ul class="navbar-nav">
         <li class="nav-item px-1 ">
-          <a class="nav-link" href="#">StartUp</a>
+          <a class="nav-link" href="#services">Services</a>
         </li>
         <li class="nav-item px-1 ">
-          <a class="nav-link" href="minimal/index.html">Minimal</a>
+          <a class="nav-link" href="#languages">Languages</a>
         </li>
         <li class="nav-item px-1 ">
-          <a class="nav-link" href="bold/index.html">Bold</a>
+          <a class="nav-link" href="#contact">Contact</a>
         </li>
         <li class="nav-item px-1 ">
-          <a class="nav-link" href="docs/index.html">Docs</a>
+          <a class="nav-link" href="#requestAQuotation">Request a Quotation</a>
         </li>
       </ul>
     </div>
