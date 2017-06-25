@@ -67,16 +67,18 @@
     </div> 
   <?php
     //Still experimenting. This gets last 10 posts and displays it on the industries section of page
+    //This gets the last 10 posts
     $lastposts = get_posts( array(
         'posts_per_page' => 10
-    ) );
+    ));
      
     if ( $lastposts ) {
+        //For each loop to go through each post from the $lastposts variable
         foreach ( $lastposts as $post ) :
             setup_postdata( $post ); ?>
             <div class="row">
               <div class="col-md-5">
-                <h6 class="text-muted text-uppercase">Easy development</h6>
+                <h6 class="text-muted text-uppercase">The image will go here</h6>
               </div>
               <div class="col-md-7">
                 <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
