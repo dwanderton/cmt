@@ -42,15 +42,22 @@
 
   <img class="app-graph"  src="<?php bloginfo('template_directory'); ?>/assets/img/startup-0.svg">
 
-  <div class="block-xs-middle pb-5">
+  <div class="block-xs-bottom pb-5">
     <div class="container">
       <div class="row">
         <div class="col-sm-10 col-lg-6">
-          <h1 class="block-titleData frequency">Analytics on demand.</h1>
-          <p class="lead mb-4 text-muted">Stop installing bloated scripts that all track the exact same things. Install one that does everything.</p>
-          <button class="btn btn-primary btn-lg">Try it now</button>
+          <h1 class="block-titleData frequency">Translations for Shipping</h1>
+          <button class="btn btn-primary btn-lg">Request Your Quote</button>
         </div>
-      </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<div class="block">
+  <div class="container">
+    <div class="row" >
+      
     </div>
   </div>
 </div>
