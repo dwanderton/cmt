@@ -9,4 +9,21 @@ function jetpackme_remove_rp() {
     }
 }
 add_filter( 'wp', 'jetpackme_remove_rp', 20 );
+
+
+//Function for creating the Industries Taxonomy
+function create_industries_taxonomy() {
+	register_taxonomy(
+		'Industries',
+		'post',
+		array(
+			'label' => 'Industries',
+			'hierarchical' => false,
+		)
+	);
+}
+//Action to call the function which creates the Industries Taxonomy
+add_action( 'init', 'create_industries_taxonomy' );
+
+
 ?>

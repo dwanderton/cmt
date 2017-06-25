@@ -54,11 +54,40 @@
   </div>
 </div>
 
-<div class="block">
-  <div class="container">
-    <div class="row" >
-      
-    </div>
+
+
+
+
+<div class="block" id="industries">
+  <div class="container text-xs-center">
+    <div class="row">
+      <div class="col">
+        <h1 class="block-titleData frequency">Insdustries</h1>
+      </div>
+    </div> 
+  <?php
+    //Still experimenting. This gets last 10 posts and displays it on the industries section of page
+    $lastposts = get_posts( array(
+        'posts_per_page' => 10
+    ) );
+     
+    if ( $lastposts ) {
+        foreach ( $lastposts as $post ) :
+            setup_postdata( $post ); ?>
+            <div class="row">
+              <div class="col-md-5">
+                <h6 class="text-muted text-uppercase">Easy development</h6>
+              </div>
+              <div class="col-md-7">
+                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                <?php the_content(); ?>
+              </div>
+            </div>
+        <?php
+        endforeach; 
+        wp_reset_postdata();
+    }
+  ?>
   </div>
 </div>
 
@@ -130,7 +159,7 @@
     <div class="container">
       <div class="row app-align-center py-3">
         <div class="col-sm-5 push-sm-7 py-5">
-          <h6 class="text-muted text-uppercase mb-2">High Praise</h6>
+          <h6 class="text-muted text-uppercase mb-2"><P></P>raise</h6>
           <h3 class="mb-4">“Go Analytics is amazing. Decisions that used to take weeks, now only takes minutes and is available to everyone on my team.”</h3>
           <p class="mb-4 text-muted">Cindy Smith, founder of Cool Startup</p>
         </div>
@@ -151,7 +180,7 @@
 <div class="block block-secondary app-block-marketing-grid">
   <div class="container text-xs-center">
 
-    <div class="row mb-5">
+      
       <div class="col-xs-10 offset-xs-1 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
         <h6 class="text-muted text-uppercase mb-2">Inside the machine</h6>
         <h3  class="mb-4">It’s not hard to see how we make your life easier every day.</h3>
