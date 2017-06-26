@@ -10,20 +10,38 @@ function jetpackme_remove_rp() {
 }
 add_filter( 'wp', 'jetpackme_remove_rp', 20 );
 
-
-//Function for creating the Industries Taxonomy
-function create_industries_taxonomy() {
-	register_taxonomy(
-		'Industries',
-		'post',
-		array(
-			'label' => 'Industries',
-			'hierarchical' => false,
-		)
-	);
+function create_custom_post_types() {
+  register_post_type( 'industry',
+    array(
+      'labels' => array(
+        'name' => __( 'Industries' ),
+        'singular_name' => __( 'Industry' )
+      ),
+    'public' => true,
+    'has_archive' => true,
+    )
+  );
+  register_post_type( 'service',
+    array(
+      'labels' => array(
+        'name' => __( 'Services' ),
+        'singular_name' => __( 'Service' )
+      ),
+    'public' => true,
+    'has_archive' => true,
+    )
+  );
+  register_post_type( 'language',
+    array(
+      'labels' => array(
+        'name' => __( 'Languages' ),
+        'singular_name' => __( 'Language' )
+      ),
+    'public' => true,
+    'has_archive' => true,
+    )
+  );
 }
-//Action to call the function which creates the Industries Taxonomy
-add_action( 'init', 'create_industries_taxonomy' );
-
+add_action( 'init', 'create_custom_post_types' );
 
 ?>
