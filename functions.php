@@ -10,6 +10,7 @@ function jetpackme_remove_rp() {
 }
 add_filter( 'wp', 'jetpackme_remove_rp', 20 );
 
+// Create a single function to initialize all the different custom post types
 function create_custom_post_types() {
   register_post_type( 'industry',
     array(
@@ -42,6 +43,8 @@ function create_custom_post_types() {
     )
   );
 }
+
+// add the create custom post types funtion to the intialize action list
 add_action( 'init', 'create_custom_post_types' );
 
 ?>
