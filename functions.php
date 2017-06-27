@@ -41,8 +41,8 @@ add_action( 'init', 'create_custom_post_types' );
 //Create a single function to initialize all the different taxonomies
 function create_taxonomies() {
 	register_taxonomy(
-		'languages',
-		'post',
+		'language',
+		'service',
 		array(
 			'label' => 'Languages',
 			'hierarchical' => false,

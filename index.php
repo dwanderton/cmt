@@ -63,32 +63,30 @@
         <h1 class="block-titleData frequency">Insdustries</h1>
       </div>
     </div> 
-  <?php
-    //Still experimenting. This gets last 10 posts and displays it on the industries section of page
-    //This gets the last 10 posts
-    $lastposts = get_posts( array(
-        'posts_per_page' => 10,
-        'post_type' => 'industry'
-    ));
-     
-    if ( $lastposts ) {
-        //For each loop to go through each post from the $lastposts variable
-        foreach ( $lastposts as $post ) :
-            setup_postdata( $post ); ?>
-            <div class="row">
-              <div class="col-md-5">
-                <h6 class="text-muted text-uppercase">The image will go here</h6>
+    <?php
+      //function gets all posts from the industry custom post type
+      $industries = get_posts( array(
+          'post_type' => 'industry'
+      ));
+       
+      if ( $industries ) {
+          //For each loop to go through each post from the $industries variable
+          foreach ( $industries as $industry ) :
+              setup_postdata( $industry ); ?>
+              <div class="row">
+                <div class="col-md-5">
+                  <h6 class="text-muted text-uppercase">The image will go here</h6>
+                </div>
+                <div class="col-md-7">
+                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                  <?php the_content(); ?>
+                </div>
               </div>
-              <div class="col-md-7">
-                <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                <?php the_content(); ?>
-              </div>
-            </div>
-        <?php
-        endforeach; 
-        wp_reset_postdata();
-    }
-  ?>
+          <?php
+          endforeach; 
+          wp_reset_postdata();
+      }
+    ?>
   </div>
 </div>
 
@@ -101,7 +99,28 @@
         <h1 class="block-titleData frequency">Services</h1>
       </div>
     </div>
-
+    <div class="row">
+      <?php
+        //function gets all posts from the industry custom post type
+        $services = get_posts( array(
+            'post_type' => 'service'
+        ));
+         
+        if ( $services ) {
+            //For each loop to go through each post from the $services variable
+            foreach ( $services as $service ) :
+                setup_postdata( $service ); ?>
+                <div class="col-md-4">
+                  <h6 class="text-muted text-uppercase">The image will go here</h6>
+                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                  <?php the_content(); ?>
+                </div>
+            <?php
+            endforeach; 
+            wp_reset_postdata();
+        }
+      ?>
+    </div>
   </div>
 </div>
 
@@ -112,7 +131,28 @@
         <h1 class="block-titleData frequency">Languages</h1>
       </div>
     </div>
-
+    <div class="row">
+      <?php
+        //function gets all posts from the industry custom post type
+        $languages = get_posts( array(
+            'post_type' => 'service'
+        ));
+         
+        if ( $languages ) {
+            //For each loop to go through each post from the $languages variable
+            foreach ( $languages as $post ) :
+                setup_postdata( $post ); ?>
+                <div class="col-md-4">
+                  <h6 class="text-muted text-uppercase">The image will go here</h6>
+                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                  <?php the_content(); ?>
+                </div>
+            <?php
+            endforeach; 
+            wp_reset_postdata();
+        }
+      ?>
+    </div>
   </div>
 </div>
 
