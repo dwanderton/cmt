@@ -69,7 +69,8 @@
     //Still experimenting. This gets last 10 posts and displays it on the industries section of page
     //This gets the last 10 posts
     $lastposts = get_posts( array(
-        'posts_per_page' => 10
+        'posts_per_page' => 10,
+        'post_type' => 'industry'
     ));
      
     if ( $lastposts ) {
