@@ -32,19 +32,24 @@ function create_custom_post_types() {
     'has_archive' => true,
     )
   );
-  register_post_type( 'language',
-    array(
-      'labels' => array(
-        'name' => __( 'Languages' ),
-        'singular_name' => __( 'Language' )
-      ),
-    'public' => true,
-    'has_archive' => true,
-    )
-  );
 }
 
 // add the create custom post types funtion to the intialize action list
 add_action( 'init', 'create_custom_post_types' );
+
+
+//Create a single function to initialize all the different taxonomies
+function create_taxonomies() {
+	register_taxonomy(
+		'languages',
+		'post',
+		array(
+			'label' => 'Languages',
+			'hierarchical' => false,
+		)
+	);
+}
+
+add_action( 'init', 'create_taxonomies' );
 
 ?>

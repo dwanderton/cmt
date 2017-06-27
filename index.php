@@ -56,8 +56,6 @@
 
 
 
-
-
 <div class="block" id="industries">
   <div class="container text-xs-center">
     <div class="row">
@@ -91,6 +89,30 @@
         wp_reset_postdata();
     }
   ?>
+  </div>
+</div>
+
+
+
+<div class="block" id="services">
+  <div class="container text-xs-center">
+    <div class="row">
+      <div class="col">
+        <h1 class="block-titleData frequency">Services</h1>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="block" id="languages">
+  <div class="container text-xs-center">
+    <div class="row">
+      <div class="col">
+        <h1 class="block-titleData frequency">Languages</h1>
+      </div>
+    </div>
+
   </div>
 </div>
 
