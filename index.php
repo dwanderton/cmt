@@ -101,7 +101,7 @@
     </div>
     <div class="row">
       <?php
-        //function gets all posts from the industry custom post type
+        //function gets all posts from the service custom post type
         $services = get_posts( array(
             'post_type' => 'service'
         ));
@@ -110,7 +110,7 @@
             //For each loop to go through each post from the $services variable
             foreach ( $services as $service ) :
                 setup_postdata( $service ); ?>
-                <div class="col-md-4">
+                <div class="col">
                   <h6 class="text-muted text-uppercase">The image will go here</h6>
                   <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                   <?php the_content(); ?>
@@ -125,31 +125,30 @@
 </div>
 
 <div class="block" id="languages">
-  <div class="container text-xs-center">
+  <div class="container text-center">
     <div class="row">
       <div class="col">
         <h1 class="block-titleData frequency">Languages</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row ">
       <?php
-        //function gets all posts from the industry custom post type
-        $languages = get_posts( array(
-            'post_type' => 'service'
-        ));
+        //function gets all posts from the language taxonomy
+        $languages = get_terms([
+          'taxonomy' => 'language',
+          'hide_empty' => false,
+        ]);
          
         if ( $languages ) {
             //For each loop to go through each post from the $languages variable
-            foreach ( $languages as $post ) :
-                setup_postdata( $post ); ?>
-                <div class="col-md-4">
+            foreach ( $languages as $language ) :?>
+                <div class="col">
                   <h6 class="text-muted text-uppercase">The image will go here</h6>
-                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                  <?php the_content(); ?>
+                  <h2><?php print_r($language->name); ?></h2>
+                  <?php print_r($language->description);?>
                 </div>
             <?php
             endforeach; 
-            wp_reset_postdata();
         }
       ?>
     </div>
