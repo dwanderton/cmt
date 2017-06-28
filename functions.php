@@ -45,9 +45,10 @@ function create_taxonomies() {
 		'service',
 		array(
 			'label' => 'Languages',
-			'hierarchical' => false,
+			'hierarchical' => true,
 		)
 	);
+
 }
 
 add_action( 'init', 'create_taxonomies' );

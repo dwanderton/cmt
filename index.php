@@ -78,7 +78,7 @@
                   <h6 class="text-muted text-uppercase">The image will go here</h6>
                 </div>
                 <div class="col-md-7">
-                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                  <h2><a href="<?php the_permalink(); ?>"><?php print_r($industry->post_title) ?></a></h2>
                   <?php the_content(); ?>
                 </div>
               </div>
@@ -112,7 +112,7 @@
                 setup_postdata( $service ); ?>
                 <div class="col">
                   <h6 class="text-muted text-uppercase">The image will go here</h6>
-                  <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+                  <h2><a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?></a></h2>
                   <?php the_content(); ?>
                 </div>
             <?php
