@@ -89,4 +89,17 @@ function add_feature_image_controls_to_posts() {
 }
 add_feature_image_controls_to_posts();
 
+
+//helper function to return image source of feature-images added by the MultiPostThumbnail class
+/**
+ * @param string $thumbnail_name: the id of the MultiPostThumbnails object
+ * @param obj $post: the post data
+ * @param string $post_type: the post type, this allows you to specify custom post types 
+ * @param string $img_size: the id of the image size (when you used "add_image_size()")  
+ **/
+function multipost_get_img_src($thumbnail_name, $post, $post_type, $img_size) {
+    $img_id= MultiPostThumbnails::get_post_thumbnail_id($post_type,$thumbnail_name,$post->ID ); 
+    $img_src_url = wp_get_attachment_image_src($img_id, $img_size);
+    return $img_src_url[0];
+}
 ?>
