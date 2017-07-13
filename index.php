@@ -75,7 +75,7 @@
               setup_postdata( $industry ); ?>
               <div class="row">
                 <div class="col-md-5">
-                  <img src="<?php echo multipost_get_img_src('industry-slider-image', $industry, 'industry', 'feature-image') ?>">
+                <img src="<?php echo get_the_post_thumbnail_url($industry) ?>">
                 </div>
                 <div class="col-md-7">
                   <h2><a href="<?php the_permalink(); ?>"><?php print_r($industry->post_title) ?></a></h2>

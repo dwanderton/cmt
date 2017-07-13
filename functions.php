@@ -21,6 +21,11 @@ function jetpackme_remove_rp() {
 }
 add_filter( 'wp', 'jetpackme_remove_rp', 20 );
 
+add_action( 'wp_enqueue_scripts', 'theme_name_scripts' );
+function theme_name_scripts() {
+   wp_enqueue_style( 'style-name', get_stylesheet_uri() );
+}
+
 // Create a single function to initialize all the different custom post types
 function create_custom_post_types() {	
   register_post_type( 'industry',
@@ -96,10 +101,13 @@ add_feature_image_controls_to_posts();
  * @param obj $post: the post data
  * @param string $post_type: the post type, this allows you to specify custom post types 
  * @param string $img_size: the id of the image size (when you used "add_image_size()")  
+ *e.g multipost_get_img_src('industry-slider-image', $industry, 'industry', 'feature-image')
  **/
 function multipost_get_img_src($thumbnail_name, $post, $post_type, $img_size) {
     $img_id= MultiPostThumbnails::get_post_thumbnail_id($post_type,$thumbnail_name,$post->ID ); 
     $img_src_url = wp_get_attachment_image_src($img_id, $img_size);
     return $img_src_url[0];
 }
+
+
 ?>
