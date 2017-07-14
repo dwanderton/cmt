@@ -109,5 +109,32 @@ function multipost_get_img_src($thumbnail_name, $post, $post_type, $img_size) {
     return $img_src_url[0];
 }
 
+//function to generate each industry post on index.php
+//We use a PHP function because the HTML layout needs to change on every other post
+/**
+ * @param wp post type object: the current wp-post object
+ * @param number: the key value used to indicate the current order of the wp-post object we are looking at
+ */
+function generate_industries($industry, $key) {
+  $title_link = get_permalink($industry);
+  $title = $industry->post_title;
+  $content = $industry->post_content;
+  $img_url = get_the_post_thumbnail_url($industry);
+
+  $img = '<div class="col-md-5"><img src="' . $img_url . '"></div>';
+  
+  $desc = '<div class="col-md-7"><h2><a href="' . $title_link . '">' . $title . '</a></h2><p>' . $content . '</p></div>';  
+  
+  //this checks if $key is odd or even
+  //if even, the image is shown on the right and description on the left
+  if ($key % 2 == 0) {
+    return $img . $desc;
+  } //otherwise the image is on the left and the description is on the right
+  return $desc . $img;
+}
+
+
+
+
 
 ?>
