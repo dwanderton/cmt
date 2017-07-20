@@ -162,60 +162,56 @@ function image_control($type, $term,  $POST_data_field) {
     $t_id = $term->term_id;
    
     // retrieve the existing value(s) for this meta field. This returns an array
-    $your_img_src = get_option( "language_image_$t_id" );
-
+    $your_img_src = $term_meta = get_term_meta($t_id, 'image', false);
     // For convenience, see if the array is valid
-    //$you_have_img = is_array( $your_img_src );  
-    $you_have_img = is_array( $your_img_src );
-
+    //$you_have_img = is_array( $your_img_src ); 
+    $you_have_img = is_array( $your_img_src ) ? true : false;
   } else if ($type === "add") {
 
     $you_have_img = false;
 
   }
   ?>
-    <div id="image-control-add">
-      <tr class="form-field">
-        <th><label for='<?php echo $POST_data_field ?>'><?php _e( 'Upload', 'Upload' ); ?></label></th>
-        <td>   
-          <input type="text" name='<?php echo $POST_data_field ?>' id='<?php echo $POST_data_field ?>' value='<?php echo ( $you_have_img === "true" ) ? $your_img_src[0] : ''; ?>'>
-        </td>
-      </tr>
+    <div class="image-control-add">
 
-      <!-- Your image container, which can be manipulated with js -->
-      <div class="custom-img-container">
-          <?php if ( $you_have_img ) : ?>
-              <img src="<?php echo $your_img_src[0] ?>" alt="" style="max-width:100%;" />
-          <?php endif; ?>
+      <div class="form-field">
+      
+        <label for='<?php echo $POST_data_field ?>'><?php _e( 'Upload', 'Upload' ); ?></label></th>
+         
+          <input type="text" name='<?php echo $POST_data_field ?>' id='<?php echo $POST_data_field ?>' value='<?php echo ( $you_have_img === true ) ? $your_img_src[0] : ''; ?>'>
+        
+          <!-- Your image container, which can be manipulated with js -->
+          <div class="custom-img-container">
+              <?php if ( $you_have_img ) : ?>
+                  <img src="<?php echo $your_img_src[0] ?>" alt="" style="max-width:100%;" />
+              <?php endif; ?>
+          </div>
+
+          <!-- Your add & remove image links -->
+          <p class="hide-if-no-js">
+            <a class="upload-custom-img <?php if ( $you_have_img  ) { echo 'hidden'; } ?>" 
+               href="<?php echo $upload_link ?>">
+                <?php _e('Set custom image') ?>
+            </a>
+            <a class="delete-custom-img <?php if ( ! $you_have_img  ) { echo 'hidden'; } ?>" 
+              href="#">
+                <?php _e('Remove this image') ?>
+            </a>
+          </p>
       </div>
-
-      <!-- Your add & remove image links -->
-      <p class="hide-if-no-js">
-        <a class="upload-custom-img" 
-           href="<?php echo $upload_link ?>">
-            <?php _e('Set custom image') ?>
-        </a>
-        <a class="delete-custom-img <?php if ( ! $you_have_img  ) { echo 'hidden'; } ?>" 
-          href="#">
-            <?php _e('Remove this image') ?>
-        </a>
-      </p>
     </div>
     <script>
       jQuery(function($){
-
         // Set all variables to be used in scope
         var frame,
-            metaBox = $('#image-control-add'), // Your meta box id here
+            metaBox = $('.image-control-add'), // Your meta box id here
             addImgLink = metaBox.find('.upload-custom-img'),
             delImgLink = metaBox.find( '.delete-custom-img'),
             imgContainer = metaBox.find( '.custom-img-container'),
             imgIdInput = metaBox.find( '.custom-img-id' );
-         
         
         // ADD IMAGE LINK
         addImgLink.on( 'click', function( event ){
-
           
           event.preventDefault();
           
@@ -241,6 +237,7 @@ function image_control($type, $term,  $POST_data_field) {
             // Get media attachment details from the frame state
             var attachment = frame.state().get('selection').first().toJSON();
 
+            //assign src of image selected to invisible POST input field
             jQuery('#<?php echo $POST_data_field ?>')[0].value = attachment.url;
 
             // Send the attachment URL to our custom image input field.
@@ -267,6 +264,9 @@ function image_control($type, $term,  $POST_data_field) {
 
           // Clear out the preview image
           imgContainer.html( '' );
+
+        //clear value of POST input field
+          jQuery('#<?php echo $POST_data_field ?>')[0].value = "";
 
           // Un-hide the add image link
           addImgLink.removeClass( 'hidden' );
@@ -304,16 +304,12 @@ add_action( 'language_edit_form_fields', 'edit_language_meta_field', 10, 2 );
 // Save Taxonomy Image fields callback function.
 function save_language_image( $term_id ) {
   if ( isset( $_POST['language_image'] ) ) {
-    $t_id = $term_id;
-    $term_meta = get_option( "language_image_$t_id" );
-    $cat_keys = array_keys( $_POST['language_image'] );
-    foreach ( $cat_keys as $key ) {
-      if ( isset ( $_POST['language_image'][$key] ) ) {
-        $term_meta[$key] = $_POST['language_image'][$key];
-      }
+    $term_image = $_POST['language_image'];
+    if( $term_image ) {
+      update_term_meta( $term_id, 'image', $term_image );
+    } else {
+      update_term_meta( $term_id, 'image', "" );
     }
-    // Save the option array.
-    update_option( "language_image_$t_id", $term_meta );
   }
 }  
 

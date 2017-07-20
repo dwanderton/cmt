@@ -139,14 +139,13 @@
               //For each loop to go through each post from the $languages variable
               foreach ( $languages as $language ) :?>
                   <div class="col">
-                    <h6 class="text-muted text-uppercase">The image will go here</h6>
                     <h2><?php print_r($language->name); ?></h2>
                     <?php 
                       print_r($language->description);
                       $t_id = $language->term_id;
-                      $term_meta = get_option( "weekend-series_$t_id" );
-                      print_r($term_meta['image']); 
+                      $language_image = get_term_meta($t_id, 'image', true);
                     ?>
+                    <img src="<?php echo $language_image?>">
                   </div>
               <?php
               endforeach; 
