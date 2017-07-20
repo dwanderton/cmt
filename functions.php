@@ -159,14 +159,14 @@ function add_language_form_fields() {
   // this will add the custom meta field to the add new term page
   ?>
   <div class="form-field">
-    <label for="series_image"><?php _e( 'Series Image:', 'journey' ); ?></label>
-    <input type="text" name="series_image[image]" id="series_image[image]" class="series-image" value="<?php echo $seriesimage; ?>">
-    <input class="upload_image_button button" name="_add_series_image" id="_add_series_image" type="button" value="Select/Upload Image" />
+    <label for="language_image"><?php _e( 'Series Image:', 'journey' ); ?></label>
+    <input type="text" name="language_image[image]" id="language_image[image]" class="image" value="<?php echo $seriesimage; ?>">
+    <input class="upload_image_button button" name="_add_language_image" id="_add_language_image" type="button" value="Select/Upload Image" />
     <script>
       jQuery(document).ready(function() {
-        jQuery('#_add_series_image').click(function() {
+        jQuery('#_add_language_image').click(function() {
           wp.media.editor.send.attachment = function(props, attachment) {
-            jQuery('.series-image').val(attachment.url);
+            jQuery('.image').val(attachment.url);
           }
           wp.media.editor.open(this);
           return false;
@@ -176,7 +176,9 @@ function add_language_form_fields() {
   </div>
 <?php
 }
+
 add_action( 'language_add_form_fields', 'add_language_form_fields', 10, 2 );
+
 
 // Add Upload fields to "Edit Taxonomy" form
 function journey_series_edit_meta_field($term) {
@@ -185,16 +187,16 @@ function journey_series_edit_meta_field($term) {
   $t_id = $term->term_id;
  
   // retrieve the existing value(s) for this meta field. This returns an array
-  $term_meta = get_option( "weekend-series_$t_id" ); ?>
+  $term_meta = get_option( "language_image_$t_id" ); ?>
   
   <tr class="form-field">
-  <th scope="row" valign="top"><label for="_series_image"><?php _e( 'Series Image', 'journey' ); ?></label></th>
+  <th scope="row" valign="top"><label for="_langauge_image"><?php _e( 'Series Image', 'journey' ); ?></label></th>
     <td>
       <?php
         $seriesimage = esc_attr( $term_meta['image'] ) ? esc_attr( $term_meta['image'] ) : ''; 
         ?>
-      <input type="text" name="series_image[image]" id="series_image[image]" class="series-image" value="<?php echo $seriesimage; ?>">
-      <input class="upload_image_button button" name="_series_image" id="_series_image" type="button" value="Select/Upload Image" />
+      <input type="text" name="language_image[image]" id="language_image[image]" class="image" value="<?php echo $seriesimage; ?>">
+      <input class="upload_image_button button" name="_langauge_image" id="_langauge_image" type="button" value="Select/Upload Image" />
     </td>
   </tr>
   <tr class="form-field">
@@ -215,14 +217,14 @@ function journey_series_edit_meta_field($term) {
         }
       </style>
       <div class="img-wrap">
-        <img src="<?php echo $seriesimage; ?>" id="series-img">
+        <img src="<?php echo $seriesimage; ?>" id="langauge-img">
       </div>
       <script>
       jQuery(document).ready(function() {
-        jQuery('#_series_image').click(function() {
+        jQuery('#_langauge_image').click(function() {
           wp.media.editor.send.attachment = function(props, attachment) {
-            jQuery('#series-img').attr("src",attachment.url)
-            jQuery('.series-image').val(attachment.url)
+            jQuery('#langauge-img').attr("src",attachment.url)
+            jQuery('.image').val(attachment.url)
           }
           wp.media.editor.open(this);
           return false;
@@ -233,23 +235,27 @@ function journey_series_edit_meta_field($term) {
   </tr>
 <?php
 }
+
 add_action( 'language_edit_form_fields', 'journey_series_edit_meta_field', 10, 2 );
+
+
 
 // Save Taxonomy Image fields callback function.
 function save_series_custom_meta( $term_id ) {
-  if ( isset( $_POST['series_image'] ) ) {
+  if ( isset( $_POST['language_image'] ) ) {
     $t_id = $term_id;
-    $term_meta = get_option( "weekend-series_$t_id" );
-    $cat_keys = array_keys( $_POST['series_image'] );
+    $term_meta = get_option( "language_image_$t_id" );
+    $cat_keys = array_keys( $_POST['language_image'] );
     foreach ( $cat_keys as $key ) {
-      if ( isset ( $_POST['series_image'][$key] ) ) {
-        $term_meta[$key] = $_POST['series_image'][$key];
+      if ( isset ( $_POST['language_image'][$key] ) ) {
+        $term_meta[$key] = $_POST['language_image'][$key];
       }
     }
     // Save the option array.
-    update_option( "weekend-series_$t_id", $term_meta );
+    update_option( "language_image_$t_id", $term_meta );
   }
 }  
+
 add_action( 'edited_language', 'save_series_custom_meta', 10, 2 );  
 add_action( 'create_language', 'save_series_custom_meta', 10, 2 );
 
