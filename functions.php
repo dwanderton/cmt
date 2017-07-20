@@ -153,95 +153,156 @@ function generate_industries($industry, $key) {
 
 
 /* Add Image Upload to Series Taxonomy */
+function image_control($type, $term,  $POST_data_field) {
 
-// Add Upload fields to "Add New Taxonomy" form
-function add_language_form_fields() {
-  // this will add the custom meta field to the add new term page
+  $upload_link = '#';
+
+  if ($type === "edit") {
+    // put the term ID into a variable
+    $t_id = $term->term_id;
+   
+    // retrieve the existing value(s) for this meta field. This returns an array
+    $your_img_src = get_option( "language_image_$t_id" );
+
+    // For convenience, see if the array is valid
+    //$you_have_img = is_array( $your_img_src );  
+    $you_have_img = is_array( $your_img_src );
+
+  } else if ($type === "add") {
+
+    $you_have_img = false;
+
+  }
   ?>
-  <div class="form-field">
-    <label for="language_image"><?php _e( 'Series Image:', 'journey' ); ?></label>
-    <input type="text" name="language_image[image]" id="language_image[image]" class="image" value="<?php echo $seriesimage; ?>">
-    <input class="upload_image_button button" name="_add_language_image" id="_add_language_image" type="button" value="Select/Upload Image" />
+    <div id="image-control-add">
+      <tr class="form-field">
+        <th><label for='<?php echo $POST_data_field ?>'><?php _e( 'Upload', 'Upload' ); ?></label></th>
+        <td>   
+          <input type="text" name='<?php echo $POST_data_field ?>' id='<?php echo $POST_data_field ?>' value='<?php echo ( $you_have_img === "true" ) ? $your_img_src[0] : ''; ?>'>
+        </td>
+      </tr>
+
+      <!-- Your image container, which can be manipulated with js -->
+      <div class="custom-img-container">
+          <?php if ( $you_have_img ) : ?>
+              <img src="<?php echo $your_img_src[0] ?>" alt="" style="max-width:100%;" />
+          <?php endif; ?>
+      </div>
+
+      <!-- Your add & remove image links -->
+      <p class="hide-if-no-js">
+        <a class="upload-custom-img" 
+           href="<?php echo $upload_link ?>">
+            <?php _e('Set custom image') ?>
+        </a>
+        <a class="delete-custom-img <?php if ( ! $you_have_img  ) { echo 'hidden'; } ?>" 
+          href="#">
+            <?php _e('Remove this image') ?>
+        </a>
+      </p>
+    </div>
     <script>
-      jQuery(document).ready(function() {
-        jQuery('#_add_language_image').click(function() {
-          wp.media.editor.send.attachment = function(props, attachment) {
-            jQuery('.image').val(attachment.url);
+      jQuery(function($){
+
+        // Set all variables to be used in scope
+        var frame,
+            metaBox = $('#image-control-add'), // Your meta box id here
+            addImgLink = metaBox.find('.upload-custom-img'),
+            delImgLink = metaBox.find( '.delete-custom-img'),
+            imgContainer = metaBox.find( '.custom-img-container'),
+            imgIdInput = metaBox.find( '.custom-img-id' );
+         
+        
+        // ADD IMAGE LINK
+        addImgLink.on( 'click', function( event ){
+
+          
+          event.preventDefault();
+          
+          // If the media frame already exists, reopen it.
+          if ( frame ) {
+            frame.open();
+            return;
           }
-          wp.media.editor.open(this);
-          return false;
+          
+          // Create a new media frame
+          frame = wp.media({
+            title: 'Select or Upload Media Of Your Chosen Persuasion',
+            button: {
+              text: 'Use this media'
+            },
+            multiple: false  // Set to true to allow multiple files to be selected
+          });
+
+          
+          // When an image is selected in the media frame...
+          frame.on( 'select', function() {
+            
+            // Get media attachment details from the frame state
+            var attachment = frame.state().get('selection').first().toJSON();
+
+            jQuery('#<?php echo $POST_data_field ?>')[0].value = attachment.url;
+
+            // Send the attachment URL to our custom image input field.
+            imgContainer.append( '<img src="'+attachment.url+'" alt="" style="max-width:100%;"/>' );
+
+            // Send the attachment id to our hidden input
+            imgIdInput.val( attachment.id );
+
+            // Hide the add image link
+            addImgLink.addClass( 'hidden' );
+
+            // Unhide the remove image link
+            delImgLink.removeClass( 'hidden' );
+          });
+
+          // Finally, open the modal on click
+          frame.open();
         });
+
+        // DELETE IMAGE LINK
+        delImgLink.on( 'click', function( event ){
+
+          event.preventDefault();
+
+          // Clear out the preview image
+          imgContainer.html( '' );
+
+          // Un-hide the add image link
+          addImgLink.removeClass( 'hidden' );
+
+          // Hide the delete image link
+          delImgLink.addClass( 'hidden' );
+
+          // Delete the image id from the hidden input
+          imgIdInput.val( '' );
+
+        });
+        
       });
     </script>
   </div>
 <?php
 }
 
-add_action( 'language_add_form_fields', 'add_language_form_fields', 10, 2 );
-
-
-// Add Upload fields to "Edit Taxonomy" form
-function journey_series_edit_meta_field($term) {
- 
-  // put the term ID into a variable
-  $t_id = $term->term_id;
- 
-  // retrieve the existing value(s) for this meta field. This returns an array
-  $term_meta = get_option( "language_image_$t_id" ); ?>
-  
-  <tr class="form-field">
-  <th scope="row" valign="top"><label for="_langauge_image"><?php _e( 'Series Image', 'journey' ); ?></label></th>
-    <td>
-      <?php
-        $seriesimage = esc_attr( $term_meta['image'] ) ? esc_attr( $term_meta['image'] ) : ''; 
-        ?>
-      <input type="text" name="language_image[image]" id="language_image[image]" class="image" value="<?php echo $seriesimage; ?>">
-      <input class="upload_image_button button" name="_langauge_image" id="_langauge_image" type="button" value="Select/Upload Image" />
-    </td>
-  </tr>
-  <tr class="form-field">
-  <th scope="row" valign="top"></th>
-    <td style="height: 150px;">
-      <style>
-        div.img-wrap {
-          background: url('http://placehold.it/960x300') no-repeat center; 
-          background-size:contain; 
-          max-width: 450px; 
-          max-height: 150px; 
-          width: 100%; 
-          height: 100%; 
-          overflow:hidden; 
-        }
-        div.img-wrap img {
-          max-width: 450px;
-        }
-      </style>
-      <div class="img-wrap">
-        <img src="<?php echo $seriesimage; ?>" id="langauge-img">
-      </div>
-      <script>
-      jQuery(document).ready(function() {
-        jQuery('#_langauge_image').click(function() {
-          wp.media.editor.send.attachment = function(props, attachment) {
-            jQuery('#langauge-img').attr("src",attachment.url)
-            jQuery('.image').val(attachment.url)
-          }
-          wp.media.editor.open(this);
-          return false;
-        });
-      });
-      </script>
-    </td>
-  </tr>
-<?php
+// Add Upload fields to "Add New Taxonomy" form
+function add_language_form_fields() {
+  image_control('add', null, 'language_image');
 }
 
-add_action( 'language_edit_form_fields', 'journey_series_edit_meta_field', 10, 2 );
+// Add Upload fields to "Edit Taxonomy" form
+function edit_language_meta_field($term) {
+  image_control('edit', $term, 'language_image');
+}
+
+add_action( 'language_add_form_fields', 'add_language_form_fields', 10, 2 );
+
+add_action( 'language_edit_form_fields', 'edit_language_meta_field', 10, 2 );
 
 
 
 // Save Taxonomy Image fields callback function.
-function save_series_custom_meta( $term_id ) {
+function save_language_image( $term_id ) {
   if ( isset( $_POST['language_image'] ) ) {
     $t_id = $term_id;
     $term_meta = get_option( "language_image_$t_id" );
@@ -256,8 +317,8 @@ function save_series_custom_meta( $term_id ) {
   }
 }  
 
-add_action( 'edited_language', 'save_series_custom_meta', 10, 2 );  
-add_action( 'create_language', 'save_series_custom_meta', 10, 2 );
+add_action( 'edited_language', 'save_language_image', 10, 2 );  
+add_action( 'create_language', 'save_language_image', 10, 2 );
 
 
 ?>
