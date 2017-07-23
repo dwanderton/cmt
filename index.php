@@ -36,7 +36,7 @@
               <a class="nav-link" href="#contact">Contact</a>
             </li>
             <li class="nav-item px-1 ">
-              <a class="nav-link" href="#requestAQuotation">Request a Quotation</a>
+              <a class="nav-link" href="#requestAQuote">Request a Quote</a>
             </li>
           </ul>
         </div>
@@ -85,7 +85,7 @@
               <a class="nav-link" href="#contact">Contact</a>
             </li>
             <li class="nav-item px-1 ">
-              <a class="nav-link" href="#requestAQuotation">Request a Quotation</a>
+              <a class="nav-link" href="#requestAQuote">Request a Quote</a>
             </li>
           </ul>
         </div>
@@ -134,7 +134,7 @@
               <a class="nav-link" href="#contact">Contact</a>
             </li>
             <li class="nav-item px-1 ">
-              <a class="nav-link" href="#requestAQuotation">Request a Quotation</a>
+              <a class="nav-link" href="#requestAQuote">Request a Quote</a>
             </li>
           </ul>
         </div>

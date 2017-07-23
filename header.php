@@ -54,7 +54,7 @@
       <a class="nav-link" href="#contact" data-target=".stage" data-toggle="stage">Contact</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#requestAQuotation" data-target=".stage" data-toggle="stage">Request a Quotation</a>
+      <a class="nav-link" href="#requestAQuote" data-target=".stage" data-toggle="stage">Request a Quote</a>
     </li>
   </ul>
 </div>
