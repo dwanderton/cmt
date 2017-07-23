@@ -1,6 +1,6 @@
 <?php
 // Load external file to add support for MultiPostThumbnails. Allows you to set more than one "feature image" per post.
-require_once('/assets/multi-post-thumbnails.php');
+require_once(get_template_directory() . '/assets/multi-post-thumbnails.php');
 add_theme_support( 'post-thumbnails' );
 wp_enqueue_media();
 
