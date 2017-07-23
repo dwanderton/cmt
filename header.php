@@ -43,23 +43,18 @@
   
 <div class="stage-shelf stage-shelf-right hidden" id="sidebar">
   <ul class="nav nav-bordered nav-stacked flex-column">
-    <li class="nav-header">Examples</li>
+    <li class="nav-header">On this page:</li>
     <li class="nav-item">
-      <a class="nav-link active" href="index.html">Startup</a>
+      <a class="nav-link" href="#services" data-target=".stage" data-toggle="stage">Services</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="minimal/index.html">Minimal</a>
+      <a class="nav-link" href="#languages" data-target=".stage" data-toggle="stage">Languages</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="bold/index.html">Bold</a>
-    </li>
-    <li class="nav-divider"></li>
-    <li class="nav-header">Docs</li>
-    <li class="nav-item">
-      <a class="nav-link" href="docs/index.html">Toolkit</a>
+      <a class="nav-link" href="#contact" data-target=".stage" data-toggle="stage">Contact</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="http://getbootstrap.com">Bootstrap</a>
+      <a class="nav-link" href="#requestAQuotation" data-target=".stage" data-toggle="stage">Request a Quotation</a>
     </li>
   </ul>
 </div>

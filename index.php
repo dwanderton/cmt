@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-<div class="stage" id="stage">
-
   <div class="block block-inverse block-fill-height app-header"
          style="background-image: url(<?php bloginfo('template_directory'); ?>/assets/img/startup-1.jpg);">
 
@@ -155,6 +153,4 @@
       </div>
     </div>
   </div>
-</div>
-
 <?php get_footer(); ?>
