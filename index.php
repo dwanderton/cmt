@@ -58,7 +58,7 @@
     <div class="container text-xs-center">
       <div class="row">
         <div class="col">
-          <h1 class="block-titleData frequency">Insdustries</h1>
+          <h1 class="block-titleData frequency">Industries</h1>
         </div>
       </div> 
       <?php
