@@ -1,6 +1,6 @@
 <?php
 // Load external file to add support for MultiPostThumbnails. Allows you to set more than one "feature image" per post.
-require_once('/assets/multi-post-thumbnails.php');
+require_once(get_template_directory() . '/assets/multi-post-thumbnails.php');
 add_theme_support( 'post-thumbnails' );
 wp_enqueue_media();
 
@@ -305,7 +305,7 @@ function generate_industries($industry, $key) {
 
   $img = '<div class="col-md-5"><img src="' . $img_url . '"></div>';
   
-  $desc = '<div class="col-md-7"><h2><a href="' . $title_link . '">' . $title . '</a></h2><p>' . $content . '</p></div>';  
+  $desc = '<div class="col-md-7"><h2>'. $title . '</h2><p>' . $content . '</p></div>';  
   
   //this checks if $key is odd or even
   //if even, the image is shown on the right and description on the left
