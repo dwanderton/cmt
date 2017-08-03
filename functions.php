@@ -37,7 +37,7 @@ function create_custom_post_types() {
   register_post_type( 'industry',
     array(
     	'supports' => array(
-    		'title', 'editor', 'thumbnail'
+    		'title', 'editor'
     		),
       	'labels' => array(
         'name' => __( 'Industries' ),
@@ -96,6 +96,12 @@ function add_feature_image_controls_to_posts() {
 
 	// Define additional "post thumbnails" for the Industry Custom Post Type. Relies on MultiPostThumbnails to work
 	if (class_exists('MultiPostThumbnails')) {
+      new MultiPostThumbnails(array(
+          'label' => 'Feature Image',
+          'id' => 'industry-feature-image',
+          'post_type' => 'industry'
+          )
+      );     
 	    new MultiPostThumbnails(array(
 	        'label' => 'Slider Image',
 	        'id' => 'industry-slider-image',
@@ -301,7 +307,7 @@ function generate_industries($industry, $key) {
   $title_link = get_permalink($industry);
   $title = $industry->post_title;
   $content = $industry->post_content;
-  $img_url = get_the_post_thumbnail_url($industry);
+  $img_url = wp_get_attachment_image_url(get_post_meta($industry->ID,'industry_industry-feature-image_thumbnail_id', true),'large');
 
   $img = '<div class="col-md-5"><img src="' . $img_url . '"></div>';
   
