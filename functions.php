@@ -2,7 +2,12 @@
 // Load external file to add support for MultiPostThumbnails. Allows you to set more than one "feature image" per post.
 require_once(get_template_directory() . '/assets/multi-post-thumbnails.php');
 add_theme_support( 'post-thumbnails' );
-wp_enqueue_media();
+
+//Allows the media upploader to be used
+add_action( 'admin_enqueue_scripts', function( $hook )
+    {
+      wp_enqueue_media();
+    } );
 
 function debug_to_console( $data ) {
     $output = $data;
@@ -50,7 +55,7 @@ function create_custom_post_types() {
   register_post_type( 'service',
     array(
       'supports' => array(
-        'title', 'editor'
+        'title', 'editor', 'thumbnail'
         ),
       'labels' => array(
         'name' => __( 'Services' ),
@@ -110,13 +115,7 @@ function add_image_controls_to_posts() {
 	        'id' => 'industry-slider-image',
 	        'post_type' => 'industry'
 	        )
-	    );
-      new MultiPostThumbnails(array(
-          'label' => 'Feature Image',
-          'id' => 'service-feature-image',
-          'post_type' => 'service'
-          )
-      );         
+	    );       
 	};
 }
 add_image_controls_to_posts();
