@@ -49,6 +49,9 @@ function create_custom_post_types() {
   );
   register_post_type( 'service',
     array(
+      'supports' => array(
+        'title', 'editor'
+        ),
       'labels' => array(
         'name' => __( 'Services' ),
         'singular_name' => __( 'Service' )
@@ -87,7 +90,7 @@ add_action( 'init', 'create_taxonomies' );
 //----- 2a. Add feature image(s) to a Custom Post Type -----//
 
 //function used to add extra feature images to posts
-function add_feature_image_controls_to_posts() {
+function add_image_controls_to_posts() {
 	// Add Custom image sizes
 	// Note: 'true' enables hard cropping so each image is exactly those dimensions and automatically cropped
 	add_image_size( 'feature-image', 960, 500, true ); 
@@ -107,10 +110,16 @@ function add_feature_image_controls_to_posts() {
 	        'id' => 'industry-slider-image',
 	        'post_type' => 'industry'
 	        )
-	    );   
+	    );
+      new MultiPostThumbnails(array(
+          'label' => 'Feature Image',
+          'id' => 'service-feature-image',
+          'post_type' => 'service'
+          )
+      );         
 	};
 }
-add_feature_image_controls_to_posts();
+add_image_controls_to_posts();
 
 
 
@@ -307,7 +316,7 @@ function generate_industries($industry, $key) {
   $title_link = get_permalink($industry);
   $title = $industry->post_title;
   $content = $industry->post_content;
-  $img_url = wp_get_attachment_image_url(get_post_meta($industry->ID,'industry_industry-feature-image_thumbnail_id', true),'large');
+  $img_url = get_image_url_MultiPostThumbnails($industry,'industry_industry-feature-image_thumbnail_id', 'large');
 
   $img = '<div class="col-md-5"><img src="' . $img_url . '"></div>';
   
@@ -318,9 +327,22 @@ function generate_industries($industry, $key) {
   if ($key % 2 == 0) {
     return $img . $desc;
   } //otherwise the image is on the left and the description is on the right
-  return $desc . $img;
+  return $desc . $img; 
 }
 
+
+//function to get image attachment url from MultiPostThumbnails
+/**
+ *
+ * @param post object: the current wp-post object
+ * @param thumbID string: the ID of the image meta. This is {post_type} + {MultiPostThumbnailObjectID} + 'thumbnail_id'
+ * e.g. "industry_industry-feature-image_thumbnail_id"
+ * @param size string: the image size, usually defaulted to "large"
+ *
+ */
+function get_image_url_MultiPostThumbnails ($post,$thumbID,$size) {
+  return wp_get_attachment_image_url(get_post_meta($post->ID,$thumbID, true), $size);  
+}
 
 //================== 4. SPECIFIC FUNCTIONS ==================// 
 
