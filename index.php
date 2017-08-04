@@ -141,7 +141,7 @@
               foreach ( $services as $service ) :
                   setup_postdata( $service ); ?>
                     <div class="col">
-                      <img src="<?php echo get_image_url_MultiPostThumbnails($service, 'service_service-feature-image_thumbnail_id', 'large'); ?>">
+                      <img src="<?php echo get_the_post_thumbnail_url($service) ?>">
                       <h2>
                         <a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?>
                         </a>
