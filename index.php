@@ -140,10 +140,13 @@
               //For each loop to go through each post from the $services variable
               foreach ( $services as $service ) :
                   setup_postdata( $service ); ?>
-                  <div class="col">
-                    <h6 class="text-muted text-uppercase">The image will go here</h6>
-                    <h2><a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?></a></h2>
-                    <?php the_content(); ?>
+                    <div class="col">
+                      <img src="<?php echo get_image_url_MultiPostThumbnails($service, 'service_service-feature-image_thumbnail_id', 'large'); ?>">
+                      <h2>
+                        <a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?>
+                        </a>
+                      </h2>
+                    <?php the_content();?>
                   </div>
               <?php
               endforeach; 
