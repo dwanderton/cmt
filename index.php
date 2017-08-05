@@ -199,4 +199,34 @@
       </div>
     </div>
   </div>
+  <div class="block" id="about_quote">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <h1 class="block-titleData frequency">About</h1>
+          <?php
+            //query to get latest post that is categorised as "about"
+            $the_query = new WP_Query(array(
+                'posts_per_page' => 1,
+                'cat' => get_cat_ID('about')
+            ));
+          ?>
+          <ul class="list-unstyled list-spaced">
+            <li class="mb-2"><h6 class="text-uppercase"><?php //print_r($the_query->post_title);?></h6></li>
+            <li class="text-muted">
+              <?php
+                if ( $the_query->have_posts() ) {
+                  $the_query->the_post();
+                  the_content();
+                }
+              ?>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1 class="block-titleData frequency">Quote</h1>
+        </div>
+      </div>  
+    </div>
+  </div>
 <?php get_footer(); ?>
