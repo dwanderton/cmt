@@ -146,7 +146,15 @@
                         <a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?>
                         </a>
                       </h2>
-                    <?php the_content();?>
+                    <div class="row">
+                    <?php 
+                      $service_languages = wp_get_post_terms( $service->ID, 'language' );
+                      foreach ( $service_languages as $service_language ): ?>
+                      <div class="col">
+                        <img src="<?php echo get_term_meta($service_language->term_id, 'image', true)?>">
+                      </div>
+                    <?php endforeach; ?>
+                    </div>
                   </div>
               <?php
               endforeach; 
