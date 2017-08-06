@@ -196,7 +196,7 @@
                     <h4><?php print_r($language->name); ?></h4>
                   </div>
               <?php
-              endforeach; 
+              endforeach;
           }
         ?>
       </div>
