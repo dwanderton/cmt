@@ -317,7 +317,8 @@ function generate_industries($industry, $key) {
   $content = $industry->post_content;
   $img_url = get_image_url_MultiPostThumbnails($industry,'industry_industry-feature-image_thumbnail_id', 'large');
 
-  $img = '<div class="col-md-5"><img src="' . $img_url . '"></div>';
+  $img = '<div class="col-md-5"><img src="' . $img_url . '" style="max-width: 80%;
+    max-height: 300px;"></div>';
   
   $desc = '<div class="col-md-7"><h2>'. $title . '</h2><p>' . $content . '</p></div>';  
   
