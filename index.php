@@ -66,7 +66,9 @@
             <div class="row">
               <div class="col-sm-10 col-lg-6">
                 <h1 class="block-titleData frequency" style="color:white;">Translations for <?php echo $industry->post_title; ?></h1>
-                <button class="btn btn-primary btn-lg">Request Your Quote</button>
+                <a href="#requestAQuote">
+                  <button class="btn btn-primary btn-lg">Request Your Quote</button>
+                </a>
               </div>
             </div>     
           </div>
@@ -224,6 +226,7 @@
           </ul>
         </div>
         <div class="col">
+          <a name="requestAQuote"></a>
           <h1 class="block-titleData frequency">Quote</h1>
         </div>
       </div>  

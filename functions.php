@@ -317,17 +317,23 @@ function generate_industries($industry, $key) {
   $content = $industry->post_content;
   $img_url = get_image_url_MultiPostThumbnails($industry,'industry_industry-feature-image_thumbnail_id', 'large');
 
-  $img = '<div class="col-md-5"><img src="' . $img_url . '" style="max-width: 80%;
+  $img = '<div class="col-md-5 mt-5 mb-5"><img src="' . $img_url . '" style="max-width: 80%;
     max-height: 300px;"></div>';
   
-  $desc = '<div class="col-md-7"><h2>'. $title . '</h2><p>' . $content . '</p></div>';  
+  $hiddenleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-md-up"><img src="' . $img_url . '" style="max-width: 80%;
+    max-height: 300px;"></div>';
+  
+  $smallleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-sm-down"><img src="' . $img_url . '" style="max-width: 80%;
+    max-height: 300px;"></div>';
+  
+  $desc = '<div class="col-md-7 mt-5 mb-5"><h2 class="text-md-left">'. $title . '</h2><p class="text-md-left">' . $content . '</p></div>';  
   
   //this checks if $key is odd or even
   //if even, the image is shown on the right and description on the left
   if ($key % 2 == 0) {
-    return $img . $desc;
+    return $img  . $desc;
   } //otherwise the image is on the left and the description is on the right
-  return $desc . $img; 
+  return $hiddenleftimg  . $desc . $smallleftimg;
 }
 
 
