@@ -48,8 +48,9 @@ function create_custom_post_types() {
         'name' => __( 'Industries' ),
         'singular_name' => __( 'Industry' )
       ),
-    'public' => true,
-    'has_archive' => true,
+      'public' => true,
+      'has_archive' => true,
+      'menu_icon' => 'dashicons-hammer',
     )
   );
   register_post_type( 'service',
@@ -61,8 +62,9 @@ function create_custom_post_types() {
         'name' => __( 'Services' ),
         'singular_name' => __( 'Service' )
       ),
-    'public' => true,
-    'has_archive' => true,
+      'public' => true,
+      'has_archive' => true,
+      'menu_icon' => 'dashicons-portfolio',
     )
   );
 }
