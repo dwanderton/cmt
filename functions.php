@@ -159,7 +159,7 @@ function image_control($type, $term,  $POST_data_field) {
       <div class="form-field">
       
           <!-- invisible input field which stores image src link. we assign POST values to this field so that it is saved to database -->
-          <input type="text" name='<?php echo $POST_data_field ?>' id='<?php echo $POST_data_field ?>' value='<?php echo ( $you_have_img === true ) ? $your_img_src[0] : ''; ?>'>
+          <input type="hidden" name='<?php echo $POST_data_field ?>' id='<?php echo $POST_data_field ?>' value='<?php echo ( $you_have_img === true ) ? $your_img_src[0] : ''; ?>'>
         
           <!-- image container, which can be manipulated with js -->
           <div class="custom-img-container">
@@ -169,7 +169,7 @@ function image_control($type, $term,  $POST_data_field) {
           </div>
 
           <!-- add & remove image links -->
-          <p class="hide-if-no-js">
+          <p class="hide-if-no-js"> 
             <a class="upload-custom-img <?php if ( $you_have_img  ) { echo 'hidden'; } ?>" 
                href="<?php echo $upload_link ?>">
                 <?php _e('Set custom image') ?>
