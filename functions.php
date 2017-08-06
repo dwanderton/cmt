@@ -155,7 +155,17 @@ function image_control($type, $term,  $POST_data_field) {
   }
   ?>
     <div class="image-control-add">
-
+      <style>
+        /*
+        * used to tidy on the fly some ugly layout issues... ewwww!
+        */
+        .wp-clearfix:after{
+          clear: none;
+        }
+        #wpfooter{
+          display: none;
+        }
+      </style>
       <div class="form-field">
       
           <!-- invisible input field which stores image src link. we assign POST values to this field so that it is saved to database -->
@@ -319,14 +329,11 @@ function generate_industries($industry, $key) {
   $content = $industry->post_content;
   $img_url = get_image_url_MultiPostThumbnails($industry,'industry_industry-feature-image_thumbnail_id', 'large');
 
-  $img = '<div class="col-md-5 mt-5 mb-5"><img src="' . $img_url . '" style="max-width: 80%;
-    max-height: 300px;"></div>';
+  $img = '<div class="col-md-5 mt-5 mb-5"><img src="' . $img_url . '" style="max-width: 80%; max-height: 300px;"></div>';
   
-  $hiddenleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-md-up"><img src="' . $img_url . '" style="max-width: 80%;
-    max-height: 300px;"></div>';
+  $hiddenleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-md-up"><img src="' . $img_url . '" style="max-width: 80%; max-height: 300px;"></div>';
   
-  $smallleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-sm-down"><img src="' . $img_url . '" style="max-width: 80%;
-    max-height: 300px;"></div>';
+  $smallleftimg = '<div class="col-md-5 mt-5 mb-5 hidden-sm-down"><img src="' . $img_url . '" style="max-width: 80%; max-height: 300px;"></div>';
   
   $desc = '<div class="col-md-7 mt-5 mb-5"><h2 class="text-md-left">'. $title . '</h2><p class="text-md-left">' . $content . '</p></div>';  
   

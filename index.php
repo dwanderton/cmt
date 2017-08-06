@@ -185,14 +185,15 @@
           if ( $languages ) {
               //For each loop to go through each post from the $languages variable
               foreach ( $languages as $language ) :?>
-                  <div class="col">
-                    <h2><?php print_r($language->name); ?></h2>
-                    <?php 
-                      print_r($language->description);
+                  <div class="col mt-5 mb-1">
+                    <p><?php 
+                      // print_r($language->description);
                       $t_id = $language->term_id;
                       $language_image = get_term_meta($t_id, 'image', true);
                     ?>
-                    <img src="<?php echo $language_image?>">
+                    <img src="<?php echo $language_image?>" style="max-width: 80%; max-height: 100px; clear:both; border: 2px solid rgba(0, 0, 0, 0.19);">
+                    </p>
+                    <h4><?php print_r($language->name); ?></h4>
                   </div>
               <?php
               endforeach; 
