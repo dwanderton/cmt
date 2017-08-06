@@ -127,7 +127,7 @@
   <div class="block" id="services">
     <div class="container text-xs-center">
       <div class="row">
-        <div class="col">
+        <div class="col-sm-12">
           <h1 class="block-titleData frequency">Services</h1>
         </div>
       </div>
@@ -142,7 +142,7 @@
               //For each loop to go through each post from the $services variable
               foreach ( $services as $service ) :
                   setup_postdata( $service ); ?>
-                    <div class="col">
+                    <div class="col-md-4">
                       <img src="<?php echo get_the_post_thumbnail_url($service) ?>">
                       <h2>
                         <a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?>
@@ -152,7 +152,7 @@
                     <?php 
                       $service_languages = wp_get_post_terms( $service->ID, 'language' );
                       foreach ( $service_languages as $service_language ): ?>
-                      <div class="col">
+                      <div class="col-xs-4">
                         <img src="<?php echo get_term_meta($service_language->term_id, 'image', true)?>">
                       </div>
                     <?php endforeach; ?>
@@ -174,7 +174,7 @@
           <h1 class="block-titleData frequency">Languages</h1>
         </div>
       </div>
-      <div class="row ">
+      <div class="row">
         <?php
           //function gets all posts from the language taxonomy
           $languages = get_terms([
@@ -185,7 +185,7 @@
           if ( $languages ) {
               //For each loop to go through each post from the $languages variable
               foreach ( $languages as $language ) :?>
-                  <div class="col mt-5 mb-1">
+                  <div class="col-md-4 mt-5 mb-1">
                     <p><?php 
                       // print_r($language->description);
                       $t_id = $language->term_id;
@@ -205,7 +205,7 @@
   <div class="block" id="about_quote">
     <div class="container text-center">
       <div class="row">
-        <div class="col">
+        <div class="col-md-5">
           <h1 class="block-titleData frequency">About</h1>
           <?php
             //query to get latest post that is categorised as "about"
@@ -226,7 +226,7 @@
             </li>
           </ul>
         </div>
-        <div class="col">
+        <div class="col-md-5">
           <a name="requestAQuote"></a>
           <h1 class="block-titleData frequency">Quote</h1>
         </div>
