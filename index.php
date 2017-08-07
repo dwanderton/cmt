@@ -205,7 +205,7 @@
   <div class="block" id="about_quote">
     <div class="container text-center">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6 mt-5">
           <h1 class="block-titleData frequency">About</h1>
           <?php
             //query to get latest post that is categorised as "about"
@@ -226,11 +226,12 @@
             </li>
           </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-lg-6 mt-5">
           <a name="requestAQuote"></a>
           <h1 class="block-titleData frequency">Quote</h1>
         </div>
       </div>  
     </div>
   </div>
+<a name="contact"></a>
 <?php get_footer(); ?>
