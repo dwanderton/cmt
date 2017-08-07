@@ -185,7 +185,7 @@
           if ( $languages ) {
               //For each loop to go through each post from the $languages variable
               foreach ( $languages as $language ) :?>
-                  <div class="col-md-4 mt-5 mb-1">
+                  <div class="col-md-3 mt-5 mb-1">
                     <p><?php 
                       // print_r($language->description);
                       $t_id = $language->term_id;
