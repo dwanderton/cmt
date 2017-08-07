@@ -34,6 +34,10 @@
           -webkit-overflow-scrolling: touch;
         }
       }
+      .block {
+        padding:  50px 1rem;
+      }
+      #industries, #services, #languages { padding-bottom: 0; }
     </style>
     <?php wp_head(); ?>
   </head>
