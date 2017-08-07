@@ -206,7 +206,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-lg-6 mt-5">
-          <h1 class="block-titleData frequency mb-3">About</h1>
+          <h1 class="block-titleData frequency mb-3 text-md-left">About</h1>
           <?php
             //query to get latest post that is categorised as "about"
             $the_query = new WP_Query(array(
@@ -216,7 +216,7 @@
           ?>
           <ul class="list-unstyled list-spaced">
             <li class="mb-2"><h6 class="text-uppercase"><?php //print_r($the_query->post_title);?></h6></li>
-            <li class="text-muted">
+            <li class="text-muted text-md-left">
               <?php
                 if ( $the_query->have_posts() ) {
                   $the_query->the_post();
@@ -228,10 +228,10 @@
         </div>
         <div class="col-lg-6 mt-5">
           <a name="requestAQuote"></a>
-          <h1 class="block-titleData frequency mb-3">Quote</h1>
+          <h1 class="block-titleData frequency mb-3 text-md-left">Quote</h1>
           <div class="cognito">
-          <script src="https://services.cognitoforms.com/s/c4hKrqic-0Wumym4xLinwg"></script>
-          <script>Cognito.load("forms", { id: "1" });</script>
+            <script src="https://services.cognitoforms.com/s/c4hKrqic-0Wumym4xLinwg"></script>
+            <script>Cognito.load("forms", { id: "2" });</script>
           </div>
         </div>
       </div>  
