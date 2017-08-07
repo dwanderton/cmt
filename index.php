@@ -142,22 +142,21 @@
               //For each loop to go through each post from the $services variable
               foreach ( $services as $service ) :
                   setup_postdata( $service ); ?>
-                    <div class="col-md-4">
-                      <img src="<?php echo get_the_post_thumbnail_url($service) ?>">
-                      <h2>
-                        <a href="<?php the_permalink(); ?>"><?php print_r($service->post_title) ?>
-                        </a>
-                      </h2>
+                <div class="col-md-4">
+                  <img src="<?php echo get_the_post_thumbnail_url($service) ?>" style="max-width: 80%; max-height:150px;">
+                  <h2><?php print_r($service->post_title) ?></h2>
+                  <div class="container">
                     <div class="row">
                     <?php 
                       $service_languages = wp_get_post_terms( $service->ID, 'language' );
                       foreach ( $service_languages as $service_language ): ?>
-                      <div class="col-xs-4">
-                        <img src="<?php echo get_term_meta($service_language->term_id, 'image', true)?>">
+                      <div class="col">
+                        <img src="<?php echo get_term_meta($service_language->term_id, 'image', true)?>" style="max-width: 80%; max-height: 25px; border: 1px solid rgba(0, 0, 0, 0.19);">
                       </div>
                     <?php endforeach; ?>
                     </div>
                   </div>
+                </div>
               <?php
               endforeach; 
               wp_reset_postdata();
