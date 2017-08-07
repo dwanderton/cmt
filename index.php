@@ -86,7 +86,7 @@
     <span class="icon icon-chevron-thin-left" aria-hidden="true" style="color:white;"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carousel-example-generic-2" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#carousel-example-generic-2" role="button" data-slide="next" style="top: 105px;">
     <span class="icon icon-chevron-thin-right" aria-hidden="true" style="color:white;"></span>
     <span class="sr-only">Next</span>
   </a>
@@ -142,10 +142,10 @@
               //For each loop to go through each post from the $services variable
               foreach ( $services as $service ) :
                   setup_postdata( $service ); ?>
-                <div class="col-md-4">
+                <div class="col-md-4 mt-3 mb-3">
                   <img src="<?php echo get_the_post_thumbnail_url($service) ?>" style="max-width: 80%; max-height:150px;">
-                  <h2><?php print_r($service->post_title) ?></h2>
-                  <div class="container">
+                  <h2 class="mt-2 mb-2"><?php print_r($service->post_title) ?></h2>
+                  <div class="container mt-3 mb-3">
                     <div class="row">
                     <?php 
                       $service_languages = wp_get_post_terms( $service->ID, 'language' );
@@ -156,6 +156,7 @@
                     <?php endforeach; ?>
                     </div>
                   </div>
+                  <div class="pl-5 pr-5"><?php the_content(); ?></div>
                 </div>
               <?php
               endforeach; 
